@@ -1,0 +1,6 @@
+use_frameworks!
+target 'LXExtension_Tests' do
+  pod 'LXExtension', :path => '../'
+  
+  
+end
