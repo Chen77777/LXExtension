@@ -201,7 +201,7 @@ extension UIImage {
     /// - Note: ⚠️如果放在主线程压缩图片,可能会阻塞线程,需要放在其它线程
     func lx_compressed(kbytes: CGFloat) -> Data {
         var compression: CGFloat = 1
-        var imgData = UIImageJPEGRepresentation(self, compression)!
+        var imgData = self.jpegData(compressionQuality: compression)!
         //iOS单位转换是1KB = 1000B
         let aimBytes = kbytes * 1000
         
@@ -211,12 +211,12 @@ extension UIImage {
         var maxValue: CGFloat = 1
         var minValue: CGFloat = 0
         compression = pow(2, -6)
-        imgData = UIImageJPEGRepresentation(self, compression)!
+        imgData = self.jpegData(compressionQuality: compression)!
         //6次二分法压缩图片
         if CGFloat(imgData.count) < aimBytes {
             for _ in 0...6 {
                 compression = (maxValue + minValue) / 2
-                imgData = UIImageJPEGRepresentation(self, compression)!
+                imgData = self.jpegData(compressionQuality: compression)!
                 if CGFloat(imgData.count) < aimBytes * 0.9 {
                     maxValue = compression
                 } else if CGFloat(imgData.count) > aimBytes {
@@ -232,7 +232,7 @@ extension UIImage {
             let size = CGSize.init(width: Int(Float(img.size.width) * sqrtf(Float(ratio))), height: Int(Float(img.size.height) * sqrtf(Float(ratio))))
             if let aimg = UIImage.lx_with(data: imgData, maxPixelSize: max(size.width, size.height)) {
                 img = aimg
-                imgData = UIImageJPEGRepresentation(aimg, compression)!
+                imgData = aimg.jpegData(compressionQuality: compression)!
             }else {
                 break
             }

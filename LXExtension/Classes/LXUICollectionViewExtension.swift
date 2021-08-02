@@ -35,28 +35,28 @@ extension LXNameSpaceWrapper where Base: UICollectionView {
     func registerHeaderNib<T: UICollectionReusableView>(_ aClass: T.Type) {
         let name = String(describing: aClass)
         let nib = UINib(nibName: name, bundle: nil)
-        base.register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: name)
+        base.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: name)
     }
     
     func registerHeaderClass<T: UICollectionReusableView>(_ aClass: T.Type) {
         let name = String(describing: aClass)
-        base.register(aClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: name)
+        base.register(aClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: name)
     }
     
     func registerFooterNib<T: UICollectionReusableView>(_ aClass: T.Type) {
         let name = String(describing: aClass)
         let nib = UINib(nibName: name, bundle: nil)
-        base.register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: name)
+        base.register(nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: name)
     }
     
     func registerFooterClass<T: UICollectionReusableView>(_ aClass: T.Type) {
         let name = String(describing: aClass)
-        base.register(aClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: name)
+        base.register(aClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: name)
     }
 
     func dequeueReusableHeader<T: UIView>(_ aClass: T.Type, indexPath: IndexPath) -> T! {
         let name = String(describing: aClass)
-        guard let cell = base.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: name, for: indexPath) as? T else {
+        guard let cell = base.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: name, for: indexPath) as? T else {
             fatalError("\(name) is not registed")
         }
         return cell
@@ -64,7 +64,7 @@ extension LXNameSpaceWrapper where Base: UICollectionView {
     
     func dequeueReusableFooter<T: UIView>(_ aClass: T.Type, indexPath: IndexPath) -> T! {
         let name = String(describing: aClass)
-        guard let cell = base.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: name, for: indexPath) as? T else {
+        guard let cell = base.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: name, for: indexPath) as? T else {
             fatalError("\(name) is not registed")
         }
         return cell
