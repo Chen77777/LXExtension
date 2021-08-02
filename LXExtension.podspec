@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXExtension'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = '项目常用的拓展方法,方便开发'
-
+  s.swift_version    = '5.1'
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
